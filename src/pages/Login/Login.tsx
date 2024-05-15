@@ -1,8 +1,9 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import b2bitLogo from '../../../public/logo/b2bit_png.png';
+import { loginUser } from "../../services/loginAPI";
 
-interface FormValues {
+export interface FormValues {
   email: string;
   password: string;
 }
@@ -34,16 +35,17 @@ const Login: React.FC = () => {
             }
             return errors;
           }}
-          onSubmit={
-            (
-              values: FormValues,
-              { setSubmitting }: FormikHelpers<FormValues>
-            ) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
-            }}
+          onSubmit={async (
+            values: FormValues,
+            { setSubmitting }: FormikHelpers<FormValues>
+          ) => {
+            setTimeout(async () => {
+              alert(JSON.stringify(values, null, 2));
+              const response = await loginUser(values);
+              console.log(response)
+              setSubmitting(false);
+            }, 400);
+          }}
         >
           {({ isSubmitting }) => (
             <Form className="sm:flex sm:flex-col sm:text-left">
