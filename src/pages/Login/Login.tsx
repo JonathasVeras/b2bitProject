@@ -1,7 +1,8 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import b2bitLogo from '../../../public/logo/b2bit_png.png';
-import { loginUser } from "../../services/loginAPI";
+import { loginUserApi } from "../../services/loginAPI";
+import { useNavigate } from "react-router-dom";
 
 export interface FormValues {
   email: string;
@@ -18,6 +19,11 @@ export const fieldsStyle: string = "border-2 m-2 p-2 rounded-md bg-[#F1F1F1]";
 export const TitleFieldStyle: string = "flex text-md font-semibold text-left";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+
+  const goToProfile = () => {
+    navigate("/profile");
+  }
   return (
     <div className="flex items-center justify-center text-center h-screen bg-[#FAFAFA]">
       <div className="shadow-xl p-4 rounded-xl">
@@ -40,9 +46,14 @@ const Login: React.FC = () => {
             { setSubmitting }: FormikHelpers<FormValues>
           ) => {
             setTimeout(async () => {
-              alert(JSON.stringify(values, null, 2));
-              const response = await loginUser(values);
+              const response = await loginUserApi(values);
               console.log(response)
+              if(response.success){
+                goToProfile();
+              }
+              else{
+                alert('deu ruim')
+              }
               setSubmitting(false);
             }, 400);
           }}
