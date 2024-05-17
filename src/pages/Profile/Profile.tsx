@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getProfileInfoApi } from "../../../services/profileAPI";
+import { getProfileInfoApi } from "../../services/profileAPI";
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +16,13 @@ export interface IProfile {
     role: string | null;
     type: string | null;
 }
+
+interface IResponse {
+    success: boolean;
+    data: any;
+    status: number;
+}
+
 
 const Profile: React.FC = () => {
     const navigate = useNavigate();
@@ -36,8 +43,13 @@ const Profile: React.FC = () => {
     }, [])
 
     const getProfileInfo = async () => {
-        const response = await getProfileInfoApi();
-        setProfile(response.data)
+        const response: IResponse = await getProfileInfoApi();
+        if (response.success) {
+            setProfile(response.data)
+        }
+        else {
+            logout();
+        }
     }
 
     const logout = () => {
