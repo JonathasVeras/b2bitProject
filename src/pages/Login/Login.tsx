@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
-import b2bitLogo from '../../../public/logo/b2bit_png.png';
+import b2bitLogo from '../../assets/logo/b2bit_png.png';
 import { loginUserApi } from "../../services/loginAPI";
 import { useNavigate } from "react-router-dom";
 import ModalAlert from "../../components/ModalAlert/ModalAlert";
