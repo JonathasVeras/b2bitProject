@@ -6,3 +6,4 @@ export default defineConfig({
   base: "/b2bitProject/",
   plugins: [react()],
 })
+ 
