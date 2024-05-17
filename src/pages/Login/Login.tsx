@@ -42,7 +42,7 @@ const Login: React.FC = () => {
   };
 
   const goToProfile = () => {
-    navigate("/profile");
+    navigate("/b2bitProject/profile");
   }
   return (
     <div className="flex items-center justify-center text-center h-screen bg-[#FAFAFA]">

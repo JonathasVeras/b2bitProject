@@ -43,7 +43,7 @@ const Profile: React.FC = () => {
     const logout = () => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        navigate("/");
+        navigate("/b2bitProject/");
     }
     return (
         <>
