@@ -3,10 +3,10 @@ import { getProfileInfoApi } from "../../../services/profileAPI";
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 
-export const elementsStyle: string = "p-4 mb-4 px-4 bg-[#F4F4F4] rounded-xl min-w-[350px]"
+export const elementsStyle: string = "p-4 mb-4 px-4 bg-[#F4F4F4] rounded-xl sm:min-w-[350px]"
 
 export interface IProfile {
-    avatar: string | null;
+    avatar: any | null;
     created: string | null;
     email: string | null;
     id: number | null;
@@ -43,22 +43,22 @@ const Profile: React.FC = () => {
     const logout = () => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        navigate("/");
+        navigate("/b2bitProject/");
     }
     return (
         <>
-            <div className="bg-[#FDFDFD]">
-                <div className="flex flex-row-reverse bg-white mb-24">
+            <div className="bg-[#F1F5F9] h-screen">
+                <div className="sm:flex sm:flex-row-reverse bg-white mb-24">
                     <button
-                        className="m-4 bg-[#02274F] text-white rounded-lg px-32 py-2"
+                        className="sm:m-4 bg-[#02274F] text-white sm:rounded-lg sm:px-32 px-10 py-2"
                         onClick={logout}
                     >Logout</button>
                 </div>
-                <div className="flex items-center justify-center text-center">
-                    <div className="shadow-xl p-4 rounded-xl text-left">
+                <div className="sm:flex items-center justify-center text-center">
+                    <div className="shadow-xl p-4 sm:rounded-xl text-left bg-[#FDFDFD]">
                         <div className="flex flex-col items-center justify-center text-center">
                             <p className="text-semibold text-lg mb-4">Profile picture</p>
-                            <div className="bg-[#FDFDFD] w-[90px] h-[90px] rounded-xl">
+                            <div className="bg-[#FDFDFD] w-[90px] h-[90px] sm:rounded-xl">
                                 {profile.avatar == null ?
                                     (
                                         <>
@@ -66,7 +66,7 @@ const Profile: React.FC = () => {
                                         </>
                                     ) : (
                                         <>
-                                            <img src={profile.avatar} alt="Profile Avatar" className="w-full h-full object-cover rounded-xl" />
+                                            <img src={profile.avatar.high} alt="Profile Avatar" className="w-full h-full object-cover rounded-xl" />
                                         </>
                                     )}
                             </div>

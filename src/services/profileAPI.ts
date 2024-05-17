@@ -19,8 +19,6 @@ export async function getProfileInfoApi() {
 
     const response = await api.get("/auth/profile/", config);
 
-    console.log(response);
-
     return { success: true, data: response.data, status: response.status };
   } catch (error) {
     let message = "Erro ao recuperar informações do perfil.";
